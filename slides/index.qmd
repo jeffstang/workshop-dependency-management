@@ -1,0 +1,189 @@
+---
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: true
+    preview-links: auto
+    footer: "Dependency Management Workshop"
+    transition: slide
+    background-transition: fade
+    scrollable: true
+---
+
+::: {style="text-align: center; margin-top: 30px;"}
+### UBC Bioinformatics and Statistics Workshop Series
+
+# Dependency Management Workshop
+
+Presenter: Jeffrey Tang
+
+January 14, 2026
+
+Contact: jeffrey.tang@hli.ubc.ca
+
+![](slides/images/ubc_acknowledgements.png){width="250px"}
+:::
+
+---
+
+## Welcome & Goals
+
+- Demonstrate renv (R native) for reproducible R package management
+- Demonstrate conda for Python environments and how to use Python inside R (reticulate)
+- Show practical setup steps for macOS and Windows (side-by-side)
+
+---
+
+## Agenda
+
+1. Why reproducible research matters (bioinformatics context)
+2. renv — brief demo (R)
+3. conda setup (mac / windows side-by-side) + environment.yml
+4. conda-lock (FYI)
+5. Python + reticulate demo inside the same Quarto/R Markdown
+6. Resources & next steps
+
+---
+
+## Why reproducible research?
+
+- Reproducibility crisis in science: inability to reproduce computational analyses
+- Analyses depend on exact package versions, system libraries, and environment setup
+- Reproducible environments make analyses portable, auditable, and deployable
+
+---
+
+## renv: R-native dependency management
+
+- renv creates an isolated project library and records a lockfile (renv.lock)
+- Commands:
+
+```r
+# initialize project-local library
+renv::init()
+
+# install packages
+install.packages(c("ggplot2", "dplyr"))
+
+# snapshot the current library to renv.lock
+renv::snapshot()
+
+# restore on a different machine
+renv::restore()
+```
+
+---
+
+## Quick renv demo (in the demo file)
+
+- Initialize renv
+- Install a couple of packages
+- Run a small R example (plot/table)
+- Snapshot the lockfile
+
+---
+
+## Installing Miniconda / conda — macOS | Windows
+
+::: columns
+::: {.column width="50%"}
+### macOS
+
+1. Download Miniconda installer (https://docs.conda.io/en/latest/miniconda.html)
+2. Open Terminal
+3. Run installer (bash Miniconda3-latest-MacOSX-x86_64.sh or .pkg installer)
+4. Restart terminal / RStudio
+5. Create env: `conda env create -f environment.yml`
+
+:::
+
+::: {.column width="50%"}
+### Windows
+
+1. Download Miniconda installer (exe) from conda docs
+2. Run installer and accept defaults
+3. Open Anaconda Prompt (or PowerShell)
+4. Create env: `conda env create -f environment.yml`
+5. In R: use `reticulate::use_condaenv("workshop-dependency", required = TRUE)`
+:::
+:::
+
+---
+
+## Using mamba (faster alternative)
+
+- Install mamba in base: `conda install -n base -c conda-forge mamba`
+- Create env quickly: `mamba env create -f environment.yml`
+
+---
+
+## conda-lock (FYI)
+
+- conda-lock generates reproducible platform-specific lockfiles from environment.yml
+- Use when you need bit-for-bit reproducibility for deployment/CI
+
+Commands (examples):
+
+```
+# generate locks for multiple platforms
+conda-lock -f environment.yml -p linux-64 -p osx-64 -p win-64
+
+# install from a lockfile (platform-specific)
+conda-lock install --name myenv --file conda-lock.yml --platform linux-64
+```
+
+Notes:
+- conda-lock is optional for workshop attendees; environment.yml is sufficient for development
+- Generating cross-platform locks is best done in CI or on the maintainer's machine
+
+---
+
+## Python + reticulate: why this matters
+
+- Once conda/Python is installed and RStudio points to the correct Python, you can run python chunks or call Python from R
+- Useful libraries: pandas, matplotlib, seaborn
+
+---
+
+## Example reticulate snippet
+
+```r
+library(reticulate)
+# use the conda env created above
+reticulate::use_condaenv("workshop-dependency", required = TRUE)
+py_config()
+
+# import pandas
+pd <- import("pandas")
+df <- pd$DataFrame(dict(x = c(1,2,3), y = c(4,5,6)))
+print(df)
+```
+
+---
+
+## Troubleshooting checks (RStudio)
+
+- In Terminal: `python --version` and `which python` (mac) or `where python` (windows)
+- In R: `reticulate::py_config()` to inspect which Python R is using
+
+---
+
+## Resources
+
+- renv: https://rstudio.github.io/renv/
+- conda & mamba: https://docs.conda.io/ and https://mamba.readthedocs.io/
+- conda-lock: https://conda.github.io/conda-lock/
+- reticulate: https://rstudio.github.io/reticulate/
+
+---
+
+## Next steps
+
+- Follow demo/demo.qmd locally in RStudio
+- Generate renv.lock and conda-lock if you need archival/CI reproducibility
+
+---
+
+## Contact
+
+Jeffrey Tang — jeffrey.tang@hli.ubc.ca

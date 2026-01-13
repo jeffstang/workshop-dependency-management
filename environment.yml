@@ -1,0 +1,11 @@
+name: workshop-dependency
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pandas
+  - matplotlib
+  - seaborn
+  - pip
+  - pip:
+    - jupyter

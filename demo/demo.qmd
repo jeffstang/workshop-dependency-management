@@ -1,0 +1,75 @@
+---
+title: "Demo: renv + conda + reticulate"
+format: html
+---
+
+# renv: quick interactive demo
+
+This demo shows minimal commands to initialize renv and install packages, then demonstrates Python usage and reticulate.
+
+## R / renv section
+
+```{r}
+# Initialize renv for the project (run once)
+if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+# renv::init()  # uncomment to initialize in a live session
+
+# Example R code (will run if packages are available)
+library(ggplot2)
+library(dplyr)
+
+# small example dataset
+df <- data.frame(x = rnorm(100), y = rnorm(100) + x)
+
+p <- ggplot(df, aes(x = x, y = y)) + geom_point() + geom_smooth(method = "lm")
+print(p)
+
+# After installing packages, run renv::snapshot() to record versions
+# renv::snapshot()
+```
+
+---
+
+## Python / conda section (Quarto Python engine)
+
+```{python}
+# Example Python snippet (requires the conda env from environment.yml)
+import pandas as pd
+import matplotlib.pyplot as plt
+
+pdf = pd.DataFrame({"x": [1,2,3,4], "y": [2,3,5,7]})
+print(pdf.head())
+
+plt.plot(pdf['x'], pdf['y'], marker='o')
+plt.title('Simple Python plot')
+plt.show()
+```
+
+---
+
+## Reticulate: call Python from R
+
+```{r}
+library(reticulate)
+# Point to the conda env (adjust name if you changed it)
+# reticulate::use_condaenv("workshop-dependency", required = TRUE)
+
+# Show Python configuration
+print(reticulate::py_config())
+
+# Import pandas and convert to R data.frame
+pd <- import("pandas")
+py_df <- pd$DataFrame(dict(a = [1,2,3], b = [4,5,6]))
+print(py_df)
+
+# Convert to R
+r_df <- py_to_r(py_df)
+print(r_df)
+```
+
+---
+
+## Notes for attendees
+
+- If you only have R/RStudio, follow the mac/windows steps in the slides to install Miniconda and create the environment
+- If you cannot run python chunks locally, focus on the renv portion — renv demonstrates reproducible R package management

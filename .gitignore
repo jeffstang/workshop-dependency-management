@@ -1,0 +1,45 @@
+# R
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+.Rproj
+.Renviron
+.Renviron.site
+.Rbuildignore
+.Rcheck/
+.Rcache/
+
+# renv
+renv/library/
+renv/staging/
+renv/cache/
+
+# Quarto / websites
+.quarto/
+_docs/
+docs/
+_site/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+.venv/
+venv/
+ENV/
+env/
+.python-version
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
