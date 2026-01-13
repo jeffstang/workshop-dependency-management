@@ -19,7 +19,6 @@ renv/cache/
 # Quarto / websites
 .quarto/
 _docs/
-docs/
 _site/
 
 # Python
