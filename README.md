@@ -21,7 +21,7 @@ What you'll find in this repo
 - slides/index.qmd — Quarto revealjs slide deck for the workshop
 - demo/demo.qmd — Single Quarto/R Markdown document demonstrating renv and conda/python + reticulate examples
 - environment.yml — example conda environment used by the demo (development-friendly)
-- .github/workflows/render-slides.yml — GitHub Actions workflow that renders the slides and deploys them to GitHub Pages
+- .github/workflows/render-slides.yml — GitHub Actions workflow that automatically renders the slides and deploys them to GitHub Pages on every push to main
 
 Usage notes
 1. **Viewing the slides**: 
