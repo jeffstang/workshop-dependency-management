@@ -33,14 +33,14 @@ The `.github/workflows/render-slides.yml` workflow does the following:
 
 ### GitHub Repository Settings
 
-To enable GitHub Pages deployment, ensure the following setting is configured:
+The workflow is configured to automatically enable GitHub Pages on the first successful run. However, you can also manually configure it:
 
 1. Go to your repository **Settings** → **Pages**
 2. Under "Build and deployment":
    - **Source**: Select "GitHub Actions"
 3. Save the changes
 
-**Note**: This setting is required for the workflow to deploy successfully.
+**Note**: The workflow uses the `enablement: true` parameter in the `configure-pages` action to automatically enable GitHub Pages if it's not already configured. This means the first successful workflow run will set up Pages for you.
 
 ## Usage
 
