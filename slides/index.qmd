@@ -21,7 +21,7 @@ January 14, 2026
 
 Contact: jeffrey.tang@hli.ubc.ca
 
-![](slides/images/ubc_acknowledgements.png){width="250px"}
+![](images/ubc_acknowledgements.png){width="250px"}
 :::
 
 ---
@@ -155,7 +155,7 @@ py_config()
 
 # import pandas
 pd <- import("pandas")
-df <- pd$DataFrame(dict(x = c(1,2,3), y = c(4,5,6)))
+df <- pd$DataFrame(list(x = c(1,2,3), y = c(4,5,6)))
 print(df)
 ```
 
