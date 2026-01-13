@@ -1,0 +1,26 @@
+/*-- scss:defaults --*/
+
+/* Custom theme for UBC Workshop slides */
+
+$presentation-heading-color: #002145; /* UBC blue */
+$link-color: #0055B7; /* UBC light blue */
+
+/*-- scss:rules --*/
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  color: $presentation-heading-color;
+}
+
+.reveal a {
+  color: $link-color;
+}
+
+.reveal pre {
+  font-size: 0.75em;
+}
+
+.reveal code {
+  font-size: 0.85em;
+}

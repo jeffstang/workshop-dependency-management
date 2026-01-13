@@ -19,7 +19,8 @@ library(ggplot2)
 library(dplyr)
 
 # small example dataset
-df <- data.frame(x = rnorm(100), y = rnorm(100) + x)
+x_vals <- rnorm(100)
+df <- data.frame(x = x_vals, y = rnorm(100) + x_vals)
 
 p <- ggplot(df, aes(x = x, y = y)) + geom_point() + geom_smooth(method = "lm")
 print(p)
@@ -59,7 +60,7 @@ print(reticulate::py_config())
 
 # Import pandas and convert to R data.frame
 pd <- import("pandas")
-py_df <- pd$DataFrame(dict(a = [1,2,3], b = [4,5,6]))
+py_df <- pd$DataFrame(list(a = c(1,2,3), b = c(4,5,6)))
 print(py_df)
 
 # Convert to R
