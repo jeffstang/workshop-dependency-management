@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Quarto
-        uses: quarto-dev/quarto-actions/setup-quarto@v2
+        uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render slides
         run: |
