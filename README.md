@@ -4,6 +4,14 @@ Short workshop repo demonstrating how to use renv (R) and conda/python together 
 
 Duration: 1 hour demo (renv + Python/reticulate examples)
 
+## 📊 View Rendered Slides
+
+**The slides are automatically rendered and deployed via GitHub Actions!**
+
+Access the rendered slide deck here: **https://jeffstang.github.io/workshop-dependency-management/**
+
+The slides are automatically updated whenever changes are pushed to the `main` branch.
+
 Prerequisites
 - R (>= 4.0) and RStudio installed
 - Quarto CLI (for rendering slides or the demo locally) — optional for attendees following Rmarkdown in RStudio
@@ -13,12 +21,16 @@ What you'll find in this repo
 - slides/index.qmd — Quarto revealjs slide deck for the workshop
 - demo/demo.qmd — Single Quarto/R Markdown document demonstrating renv and conda/python + reticulate examples
 - environment.yml — example conda environment used by the demo (development-friendly)
-- .github/workflows/render-slides.yml — GitHub Actions workflow that renders the slides to docs/ on push
+- .github/workflows/render-slides.yml — GitHub Actions workflow that automatically renders the slides and deploys them to GitHub Pages on every push to main
 
 Usage notes
-1. To preview slides locally (if you have Quarto installed):
-   - quarto render slides/index.qmd --to revealjs --output-dir docs
-   - Open docs/index.html in a browser
+1. **Viewing the slides**: 
+   - **Online**: Visit https://jeffstang.github.io/workshop-dependency-management/ (automatically updated)
+   - **Locally** (if you have Quarto installed):
+     ```bash
+     quarto render slides/index.qmd --to revealjs --output-dir docs
+     ```
+     Then open `docs/index.html` in a browser
 
 2. To follow the demo locally (RStudio):
    - Open demo/demo.qmd in RStudio
