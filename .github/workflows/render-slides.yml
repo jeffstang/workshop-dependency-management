@@ -27,7 +27,7 @@ jobs:
       - name: Render slides
         run: |
           mkdir -p docs
-          quarto render slides/index.qmd --to revealjs --output-dir ../docs
+          quarto render slides/index.qmd --to revealjs --output-dir docs
 
       - name: Upload rendered site as artifact
         uses: actions/upload-artifact@v4
