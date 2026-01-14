@@ -22,21 +22,6 @@ This R Markdown demo shows:
 2. **Load that environment as the Python runtime** for your R session
 3. **Run Python code chunks** using the packages installed in that environment
 
-```{r setup}
-library(reticulate)
-# Point to the pre-existing conda environment (workshop-dependency)
-# This environment should already exist - created via: conda env create -f environment.yml
-use_condaenv("workshop-dependency", required = TRUE)
-
-# Verify Python configuration - this shows which Python and packages are being used
-py_config()
-```
-
-**Note:** The conda environment "workshop-dependency" must already exist on your system. Create it first with:
-```bash
-conda env create -f environment.yml
-```
-
 ---
 
 ## R / renv section
@@ -64,6 +49,21 @@ print(p)
 ---
 
 ## Python section (via reticulate)
+
+```{r setup}
+library(reticulate)
+# Point to the pre-existing conda environment (workshop-dependency)
+# This environment should already exist - created via: conda env create -f environment.yml
+use_condaenv("workshop-dependency", required = TRUE)
+
+# Verify Python configuration - this shows which Python and packages are being used
+py_config()
+```
+
+**Note:** The conda environment "workshop-dependency" must already exist on your system. Create it first with:
+```bash
+conda env create -f environment.yml
+```
 
 After the setup chunk above, Python chunks will work via reticulate:
 
