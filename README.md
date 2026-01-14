@@ -6,7 +6,7 @@ Duration: 1 hour demo (renv + Python/reticulate examples)
 
 ## 📊 View Rendered Slides
 
-**The slides are automatically rendered and deployed via GitHub Actions!**
+**The slides are automatically rendered and deployed via GitHub Actions**
 
 Access the rendered slide deck here: **https://jeffstang.github.io/workshop-dependency-management/**
 
@@ -15,7 +15,7 @@ The slides are automatically updated whenever changes are pushed to the `main` b
 Prerequisites
 - R (>= 4.0) and RStudio installed
 - Quarto CLI (for rendering slides or the demo locally) — optional for attendees following Rmarkdown in RStudio
-- Optional: Miniconda or Anaconda if you want to run the Python/conda portions locally
+- Local installation of Miniforge3 for macOS and Windows users
 
 What you'll find in this repo
 - slides/index.qmd — Quarto revealjs slide deck for the workshop
