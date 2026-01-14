@@ -60,14 +60,24 @@ plt.show()
 
 ## Reticulate: R ↔ Python interoperability
 
+### Using Pre-existing Conda Environments with Reticulate
+
+**Yes, reticulate can call and use pre-existing conda environments!** This is a key feature that allows you to:
+
+1. **Reference any existing conda environment by name** using `use_condaenv()`
+2. **Load that environment as the Python runtime** for your R session  
+3. **Access all Python packages** installed in that conda environment
+4. **Share data between R and Python** seamlessly
+
 Use reticulate when you need to share objects between R and Python:
 
 ```{r}
 library(reticulate)
-# Point to the conda env (adjust name if you changed it)
+# Point to the pre-existing conda env (adjust name if you changed it)
+# This environment should already exist - created via: conda env create -f environment.yml
 use_condaenv("workshop-dependency", required = TRUE)
 
-# Show Python configuration
+# Show Python configuration - confirms we're using the conda environment
 print(py_config())
 
 # Import pandas and create a DataFrame from R
@@ -81,6 +91,11 @@ print(class(r_df))
 print(r_df)
 ```
 
+**Note:** The conda environment "workshop-dependency" must already exist on your system. Create it first with:
+```bash
+conda env create -f environment.yml
+```
+
 ---
 
 ## Notes for attendees
@@ -89,4 +104,14 @@ print(r_df)
 - Python chunks run via Jupyter (no reticulate needed for execution)
 - R chunks run via knitr
 - Use reticulate only when you need to share data between R and Python
+- **Reticulate CAN use pre-existing conda environments** - just provide the environment name
 - Before rendering: `conda activate workshop-dependency && quarto render demo.qmd`
+
+### FAQ: Using Pre-existing Conda Environments
+
+**Q: Can reticulate use an existing conda environment I already created?**
+
+**A: Yes!** Simply use `use_condaenv("your-env-name", required = TRUE)` where "your-env-name" is the name of any conda environment on your system. You can list available conda environments with:
+```bash
+conda env list
+```
