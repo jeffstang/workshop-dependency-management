@@ -23,6 +23,7 @@ demo/renv
 .quarto/
 _docs/
 _site/
+docs/
 
 # Python
 __pycache__/
