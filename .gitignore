@@ -1,20 +1,23 @@
 # R
-.Rhistory
-.Rapp.history
-.RData
-.Ruserdata
-.Rproj.user/
-.Rproj
-.Renviron
-.Renviron.site
-.Rbuildignore
-.Rcheck/
-.Rcache/
+*.Rhistory
+*.Rapp.history
+*.RData
+*.Ruserdata
+*.Rproj.user/
+*.Rproj
+*.Renviron
+*.Renviron.site
+*.Rbuildignore
+*.Rcheck/
+*.Rcache/
+demo/.Rprofile
+demo/renv.lock
+demo/renv
 
 # renv
-renv/library/
-renv/staging/
-renv/cache/
+*renv/library/
+*renv/staging/
+*renv/cache/
 
 # Quarto / websites
 .quarto/

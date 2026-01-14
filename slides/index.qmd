@@ -8,12 +8,14 @@ format:
     transition: slide
     background-transition: fade
     scrollable: true
+execute:
+  enabled: false
 ---
 
-::: {style="text-align: center; margin-top: 30px;"}
-### UBC Bioinformatics and Statistics Workshop Series
+::: {style="text-align: center; margin-top: 60px;"}
+#### UBC Bioinformatics and Statistics Workshop Series
 
-## Dependency Management using renv and conda
+## Dependency Management using renv and conda in Markdown
 
 Presenter: Jeffrey Tang | jeffrey.tang@hli.ubc.ca
 
@@ -24,11 +26,11 @@ January 14, 2026
 
 ---
 
-## Leaning Objectives
+## Learning Objectives
 
 - Demonstrate renv (R native) for reproducible R package management
-- Demonstrate conda for Python environments and how to use Python inside R (reticulate)
 - Show practical setup steps for macOS and Windows (side-by-side)
+- Demonstrate conda for Python environments and how to use Python inside R (reticulate)
 
 ---
 
@@ -51,7 +53,7 @@ January 14, 2026
 
 ---
 
-## renv: R-native dependency management
+### renv: R-native dependency management
 
 - renv creates an isolated project library and records a lockfile (renv.lock)
 - Commands:
@@ -81,11 +83,11 @@ renv::restore()
 
 ---
 
-## Installing Miniconda / conda — macOS | Windows
+### Installing miniforge - macOS | Windows
 
 ::: columns
 ::: {.column width="50%"}
-### macOS
+#### macOS
 
 1. We can use the Miniforge3 installers (https://conda-forge.org/download/)
 2. Open up a terminal and run: `bash ${HOME}/Downloads/Miniforge3.sh -b -p "${HOME}/miniforge3"`
@@ -98,7 +100,7 @@ renv::restore()
 :::
 
 ::: {.column width="50%"}
-### Windows
+#### Windows
 
 1. Download Miniforge installer (same as MacOS)
 2. Run installer and select "Register Miniforge3 as my default Python 3.12"
@@ -119,7 +121,7 @@ renv::restore()
 
 - To create the conda environment we run the following:  
 ```{bash}
-#| eval: false
+cd <project_directory>
 conda env create -f environment.yml
 ```
 ---
