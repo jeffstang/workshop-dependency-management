@@ -28,7 +28,12 @@ Usage notes
    - **Online**: Visit https://jeffstang.github.io/workshop-dependency-management/ (automatically updated)
    - **Locally** (if you have Quarto installed):
      ```bash
-     quarto render slides/index.qmd --to revealjs --output-dir docs
+     quarto render slides/index.qmd --to revealjs --output-dir ../docs
+     ```
+     Or from the repository root:
+     ```bash
+     mkdir -p docs
+     quarto render slides/index.qmd --to revealjs --output-dir ../docs
      ```
      Then open `docs/index.html` in a browser
 
