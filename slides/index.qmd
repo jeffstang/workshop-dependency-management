@@ -170,6 +170,27 @@ print(df)
 
 ---
 
+## Python chunk example (Quarto only)
+
+In Quarto documents, you can use native Python chunks:
+
+```python
+# Example Python snippet
+import pandas as pd
+import matplotlib.pyplot as plt
+
+pdf = pd.DataFrame({"x": [1,2,3,4], "y": [2,3,5,7]})
+print(pdf.head())
+
+plt.plot(pdf['x'], pdf['y'], marker='o')
+plt.title('Python plot in Quarto')
+plt.show()
+```
+
+Note: This works in Quarto (.qmd) but requires reticulate in R Markdown (.Rmd)
+
+---
+
 ## Troubleshooting checks (RStudio)
 
 - In Terminal: `python --version` and `which python` (mac) or `where python` (windows)

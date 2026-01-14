@@ -1,11 +1,14 @@
 ---
-title: "Demo: renv + conda + reticulate"
+title: "Demo (Quarto): renv + conda with native Python chunks"
 format: html
 ---
 
-# renv: quick interactive demo
+# Overview
 
-This demo shows minimal commands to initialize renv and install packages, then demonstrates Python usage and reticulate.
+This Quarto demo shows:
+1. **renv** for R package management
+2. **Native Python chunks** (no reticulate needed for execution)
+3. **Reticulate** for R-to-Python interoperability
 
 ## R / renv section
 
@@ -31,16 +34,14 @@ print(p)
 
 ---
 
-## Python / conda section (Quarto Python engine)
-```{r}
-reticulate::py_config()
+## Python section (Native Quarto Python engine)
 
-# import pandas
-pd <- import("pandas")
-df <- pd$DataFrame(list(x = c(1,2,3), y = c(4,5,6)))
-print(df)
+**Note:** Before rendering, activate your conda environment:
+```bash
+conda activate workshop-dependency
 ```
 
+Quarto will automatically use Jupyter to execute Python chunks:
 
 ```{python}
 # Example Python snippet (requires the conda env from environment.yml)
@@ -51,29 +52,32 @@ pdf = pd.DataFrame({"x": [1,2,3,4], "y": [2,3,5,7]})
 print(pdf.head())
 
 plt.plot(pdf['x'], pdf['y'], marker='o')
-plt.title('Simple Python plot')
+plt.title('Simple Python plot from native Quarto chunk')
 plt.show()
 ```
 
 ---
 
-## Reticulate: call Python from R
+## Reticulate: R ↔ Python interoperability
+
+Use reticulate when you need to share objects between R and Python:
 
 ```{r}
 library(reticulate)
 # Point to the conda env (adjust name if you changed it)
-# reticulate::use_condaenv("workshop-dependency", required = TRUE)
+use_condaenv("workshop-dependency", required = TRUE)
 
 # Show Python configuration
-print(reticulate::py_config())
+print(py_config())
 
-# Import pandas and convert to R data.frame
+# Import pandas and create a DataFrame from R
 pd <- import("pandas")
 py_df <- pd$DataFrame(list(a = c(1,2,3), b = c(4,5,6)))
 print(py_df)
 
-# Convert to R
+# Convert to R data.frame
 r_df <- py_to_r(py_df)
+print(class(r_df))
 print(r_df)
 ```
 
@@ -81,5 +85,8 @@ print(r_df)
 
 ## Notes for attendees
 
-- If you only have R/RStudio, follow the mac/windows steps in the slides to install Miniconda and create the environment
-- If you cannot run python chunks locally, focus on the renv portion — renv demonstrates reproducible R package management
+- **Quarto automatically detects chunk types** and uses the appropriate engine
+- Python chunks run via Jupyter (no reticulate needed for execution)
+- R chunks run via knitr
+- Use reticulate only when you need to share data between R and Python
+- Before rendering: `conda activate workshop-dependency && quarto render demo.qmd`

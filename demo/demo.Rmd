@@ -1,0 +1,107 @@
+---
+title: "Demo (R Markdown): renv + conda with reticulate"
+output: html_document
+---
+
+# Overview
+
+This R Markdown demo shows:
+1. **renv** for R package management
+2. **Reticulate** for Python execution (REQUIRED in R Markdown)
+3. **R-to-Python interoperability**
+
+## Setup: Load reticulate and configure Python
+
+**Important:** In R Markdown, you MUST use reticulate to run Python chunks.
+
+```{r setup}
+library(reticulate)
+# Point to the conda environment
+use_condaenv("workshop-dependency", required = TRUE)
+
+# Verify Python configuration
+py_config()
+```
+
+---
+
+## R / renv section
+
+```{r}
+# Initialize renv for the project (run once)
+if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+# renv::init()  # uncomment to initialize in a live session
+
+# Example R code (will run if packages are available)
+library(ggplot2)
+library(dplyr)
+
+# small example dataset
+x_vals <- rnorm(100)
+df <- data.frame(x = x_vals, y = rnorm(100) + x_vals)
+
+p <- ggplot(df, aes(x = x, y = y)) + geom_point() + geom_smooth(method = "lm")
+print(p)
+
+# After installing packages, run renv::snapshot() to record versions
+# renv::snapshot()
+```
+
+---
+
+## Python section (via reticulate)
+
+After the setup chunk above, Python chunks will work via reticulate:
+
+```{python}
+# Example Python snippet
+import pandas as pd
+import matplotlib.pyplot as plt
+
+pdf = pd.DataFrame({"x": [1,2,3,4], "y": [2,3,5,7]})
+print(pdf.head())
+
+plt.plot(pdf['x'], pdf['y'], marker='o')
+plt.title('Simple Python plot via reticulate')
+plt.show()
+```
+
+---
+
+## Reticulate: R ↔ Python interoperability
+
+Share objects between R and Python:
+
+```{r}
+# Import pandas and create a DataFrame from R
+pd <- import("pandas")
+py_df <- pd$DataFrame(list(a = c(1,2,3), b = c(4,5,6)))
+print(py_df)
+
+# Convert to R data.frame
+r_df <- py_to_r(py_df)
+print(class(r_df))
+print(r_df)
+```
+
+You can also access Python objects from R chunks:
+
+```{python}
+# Create a Python object
+my_python_list = [10, 20, 30, 40, 50]
+```
+
+```{r}
+# Access it from R using py$
+print(py$my_python_list)
+```
+
+---
+
+## Notes for attendees
+
+- **R Markdown requires reticulate** for all Python execution
+- Must call `use_condaenv()` in a setup chunk before Python chunks
+- Python chunks are executed by reticulate, not Jupyter
+- Objects can be shared: use `py$object_name` in R, `r.object_name` in Python
+- To render: Open in RStudio and click "Knit" or run `rmarkdown::render("demo.Rmd")`
