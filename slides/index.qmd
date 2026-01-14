@@ -13,20 +13,18 @@ format:
 ::: {style="text-align: center; margin-top: 30px;"}
 ### UBC Bioinformatics and Statistics Workshop Series
 
-# Dependency Management Workshop
+## Dependency Management using renv and conda
 
-Presenter: Jeffrey Tang
+Presenter: Jeffrey Tang | jeffrey.tang@hli.ubc.ca
 
 January 14, 2026
-
-Contact: jeffrey.tang@hli.ubc.ca
 
 ![](images/ubc_acknowledgements.png){width="250px"}
 :::
 
 ---
 
-## Welcome & Goals
+## Leaning Objectives
 
 - Demonstrate renv (R native) for reproducible R package management
 - Demonstrate conda for Python environments and how to use Python inside R (reticulate)
@@ -89,32 +87,41 @@ renv::restore()
 ::: {.column width="50%"}
 ### macOS
 
-1. Download Miniconda installer (https://docs.conda.io/en/latest/miniconda.html)
-2. Open Terminal
-3. Run installer (bash Miniconda3-latest-MacOSX-x86_64.sh or .pkg installer)
-4. Restart terminal / RStudio
-5. Create env: `conda env create -f environment.yml`
+1. We can use the Miniforge3 installers (https://conda-forge.org/download/)
+2. Open up a terminal and run: `bash ${HOME}/Downloads/Miniforge3.sh -b -p "${HOME}/miniforge3"`
+3. `source "${HOME}/miniforge3/etc/profile.d/conda.sh"`
+4. `conda activate`
+5. `conda init`
+6. Restart terminal and check `conda --version`
+7. Check `python --version` 
 
 :::
 
 ::: {.column width="50%"}
 ### Windows
 
-1. Download Miniconda installer (exe) from conda docs
-2. Run installer and accept defaults
-3. Open Anaconda Prompt (or PowerShell)
-4. Create env: `conda env create -f environment.yml`
-5. In R: use `reticulate::use_condaenv("workshop-dependency", required = TRUE)`
+1. Download Miniforge installer (same as MacOS)
+2. Run installer and select "Register Miniforge3 as my default Python 3.12"
+3. After installation, search "Miniforge Prompt" in Windows Search Bar
+4. When you re-open the terminal, notice you will see a prompt with `(base)` next to your path
+5. Check Python installation is working via `python --version`
+
 :::
 :::
 
 ---
 
-## Using mamba (faster alternative)
+## Create conda environment from environment.yml
 
-- Install mamba in base: `conda install -n base -c conda-forge mamba`
-- Create env quickly: `mamba env create -f environment.yml`
+- There are several ways to initialize a conda environment
 
+- The most reproducible and portable way is through a yaml file
+
+- To create the conda environment we run the following:  
+```{bash}
+#| eval: false
+conda env create -f environment.yml
+```
 ---
 
 ## conda-lock (FYI)
@@ -183,7 +190,3 @@ print(df)
 - Generate renv.lock and conda-lock if you need archival/CI reproducibility
 
 ---
-
-## Contact
-
-Jeffrey Tang — jeffrey.tang@hli.ubc.ca
