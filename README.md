@@ -1,4 +1,6 @@
-# Workshop: Dependency Management (renv + conda)
+# Workshop: Package Dependency Management (renv + conda)
+
+Rationale: Bioinformatics tools are diverse and could require different programming languages which may lead to confusion when switching between tools and testing their functionalities
 
 Workshop repo demonstrating how to use renv (R) and conda/python together inside the same Quarto/R Markdown workflow.
 
