@@ -14,13 +14,27 @@ This R Markdown demo shows:
 
 **Important:** In R Markdown, you MUST use reticulate to run Python chunks.
 
+### Using Pre-existing Conda Environments
+
+**Yes, reticulate can call and use pre-existing conda environments!** This is done using the `use_condaenv()` function, which allows you to:
+
+1. **Point to any existing conda environment by name** - reticulate will search your conda installation for that environment
+2. **Load that environment as the Python runtime** for your R session
+3. **Run Python code chunks** using the packages installed in that environment
+
 ```{r setup}
 library(reticulate)
-# Point to the conda environment
+# Point to the pre-existing conda environment (workshop-dependency)
+# This environment should already exist - created via: conda env create -f environment.yml
 use_condaenv("workshop-dependency", required = TRUE)
 
-# Verify Python configuration
+# Verify Python configuration - this shows which Python and packages are being used
 py_config()
+```
+
+**Note:** The conda environment "workshop-dependency" must already exist on your system. Create it first with:
+```bash
+conda env create -f environment.yml
 ```
 
 ---
@@ -102,6 +116,16 @@ print(py$my_python_list)
 
 - **R Markdown requires reticulate** for all Python execution
 - Must call `use_condaenv()` in a setup chunk before Python chunks
+- **Reticulate CAN use pre-existing conda environments** - just provide the environment name
 - Python chunks are executed by reticulate, not Jupyter
 - Objects can be shared: use `py$object_name` in R, `r.object_name` in Python
 - To render: Open in RStudio and click "Knit" or run `rmarkdown::render("demo.Rmd")`
+
+### FAQ: Using Pre-existing Conda Environments
+
+**Q: Can reticulate use an existing conda environment I already created?**
+
+**A: Yes!** Simply use `use_condaenv("your-env-name", required = TRUE)` where "your-env-name" is the name of any conda environment on your system. You can list available conda environments with:
+```bash
+conda env list
+```
