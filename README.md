@@ -1,8 +1,8 @@
 # Workshop: Dependency Management (renv + conda)
 
-Short workshop repo demonstrating how to use renv (R) and conda/python together inside the same Quarto/R Markdown workflow.
+Workshop repo demonstrating how to use renv (R) and conda/python together inside the same Quarto/R Markdown workflow.
 
-Duration: 1 hour demo (renv + Python/reticulate examples)
+Duration: 1 hour including concepts, additional resources, demo
 
 ## 📊 View Rendered Slides
 
