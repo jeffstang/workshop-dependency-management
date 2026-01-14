@@ -193,7 +193,7 @@ Note: This works in Quarto (.qmd) but requires reticulate in R Markdown (.Rmd)
 
 ## Workflow: renv + conda + reticulate
 
-![](images/workflow_diagram.jpeg)
+![](images/workflow_diagram.jpg)
 
 ---
 
